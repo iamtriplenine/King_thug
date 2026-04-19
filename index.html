@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>King Thug Awards — Concours Officiel 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+/* ===== THÈME NOIR / ROUGE SANG / OR ===== */
+:root {
+    --or:      #c9a84c;
+    --or2:     #e8c97a;
+    --rouge:   #8b0000;
+    --rouge2:  #cc2200;
+    --rouge3:  #ff3322;
+    --deep:    #050505;
+    --glass:   rgba(255,255,255,0.03);
+    --border:  rgba(201,168,76,0.2);
+    --border-r:rgba(139,0,0,0.4);
+    --text:    #f5f0e8;
+    --muted:   rgba(245,240,232,0.5);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--deep);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Fond fumée / braise */
+body::before {
+    content: "";
+    position: fixed; inset: 0; z-index: 0;
+    background:
+        radial-gradient(ellipse at 50% 0%,   rgba(100,0,0,0.35) 0%, transparent 55%),
+        radial-gradient(ellipse at 20% 100%,  rgba(80,0,0,0.25) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 100%,  rgba(100,10,0,0.2) 0%, transparent 50%),
+        #050505;
+    pointer-events: none;
+}
+
+/* Grain texture */
+body::after {
+    content: "";
+    position: fixed; inset: 0; z-index: 0;
+    background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+    opacity: 0.07; pointer-events: none;
+}
+
+/* Braise flottante en bas */
+.embers {
+    position: fixed; bottom: 0; left: 0; right: 0; height: 200px;
+    z-index: 0; pointer-events: none; overflow: hidden;
+}
+.ember {
+    position: absolute; bottom: -10px;
+    width: 3px; height: 3px; border-radius: 50%;
+    background: var(--rouge3);
+    animation: emberFloat linear infinite;
+    opacity: 0;
+}
+@keyframes emberFloat {
+    0%   { transform: translateY(0) translateX(0) scale(1); opacity: 0.8; }
+    50%  { opacity: 0.5; transform: translateY(-80px) translateX(var(--dx)) scale(0.7); }
+    100% { transform: translateY(-160px) translateX(calc(var(--dx)*2)) scale(0.3); opacity: 0; }
+}
+
+.icon-svg { width: 1.2em; height: 1.2em; fill: currentColor; vertical-align: middle; }
+
+/* ===== HERO ===== */
+.hero {
+    position: relative; z-index: 2;
+    text-align: center;
+    padding: 70px 20px 40px;
+}
+
+/* Couronne SVG or */
+.crown-wrap {
+    margin-bottom: 16px;
+    display: inline-block;
+    filter: drop-shadow(0 0 18px rgba(201,168,76,0.5)) drop-shadow(0 0 4px rgba(200,0,0,0.3));
+    animation: crownPulse 3s ease-in-out infinite;
+}
+@keyframes crownPulse {
+    0%,100% { filter: drop-shadow(0 0 18px rgba(201,168,76,0.5)) drop-shadow(0 0 4px rgba(200,0,0,0.3)); }
+    50%      { filter: drop-shadow(0 0 30px rgba(201,168,76,0.8)) drop-shadow(0 0 12px rgba(200,0,0,0.5)); }
+}
+
+.hero-label {
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--or);
+    margin-bottom: 14px;
+    opacity: 0.9;
+}
+
+/* Titre principal style King Thug */
+.hero-title-king {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 14vw, 110px);
+    font-weight: 600;
+    line-height: 0.85;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--or);
+    text-shadow:
+        0 0 30px rgba(201,168,76,0.4),
+        0 2px 0 rgba(0,0,0,0.8);
+    display: block;
+}
+
+.hero-title-thug {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(58px, 16vw, 130px);
+    font-weight: 600;
+    line-height: 0.85;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--rouge2);
+    text-shadow:
+        0 0 40px rgba(180,0,0,0.6),
+        2px 2px 0 #1a0000,
+        0 2px 0 rgba(0,0,0,0.9);
+    font-style: italic;
+    display: block;
+}
+
+.hero-title-awards {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 7vw, 60px);
+    font-weight: 400;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--or);
+    text-shadow: 0 0 20px rgba(201,168,76,0.35);
+    display: block;
+    margin-top: 4px;
+}
+
+.hero-edition {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 10px;
+    font-weight: 300;
+}
+
+/* Ligne de séparation or-rouge */
+.gold-line {
+    width: 120px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--rouge2), var(--or), var(--rouge2), transparent);
+    margin: 28px auto;
+    position: relative;
+}
+.gold-line::before {
+    content: '♦';
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%,-50%);
+    color: var(--or);
+    font-size: 10px;
+    background: var(--deep);
+    padding: 0 6px;
+}
+
+/* ===== MANCHE BADGE ===== */
+#manche-badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(139,0,0,0.12);
+    border: 1px solid rgba(139,0,0,0.5);
+    border-radius: 100px;
+    padding: 10px 22px;
+    margin: 0 auto 16px;
+    font-size: 13px; color: var(--muted);
+}
+#manche-badge .manche-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--rouge3);
+    animation: manchePulse 2s ease-in-out infinite;
+    box-shadow: 0 0 6px var(--rouge3);
+}
+@keyframes manchePulse {
+    0%,100% { box-shadow: 0 0 6px var(--rouge3), 0 0 0 0 rgba(204,34,0,0.5); }
+    50%      { box-shadow: 0 0 10px var(--rouge3), 0 0 0 6px rgba(204,34,0,0); }
+}
+#manche-badge strong { color: var(--or2); font-weight: 700; }
+
+/* ===== COMPTE À REBOURS ===== */
+#countdown-wrap {
+    display: flex; justify-content: center; gap: 10px;
+    margin: 0 auto 22px; flex-wrap: wrap;
+}
+.cd-block {
+    display: flex; flex-direction: column; align-items: center;
+    background: rgba(139,0,0,0.08);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 14px; padding: 14px 16px; min-width: 68px;
+    backdrop-filter: blur(6px);
+    position: relative; overflow: hidden;
+}
+.cd-block::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(201,168,76,0.04) 0%, transparent 60%);
+}
+.cd-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px; font-weight: 600;
+    color: var(--or2); line-height: 1;
+    text-shadow: 0 0 15px rgba(201,168,76,0.4);
+    position: relative;
+}
+.cd-label {
+    font-size: 9px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--muted); margin-top: 5px;
+    position: relative;
+}
+.cd-sep {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px; color: var(--rouge2);
+    align-self: center; opacity: 0.7;
+    animation: cdBlink 1s step-end infinite;
+    text-shadow: 0 0 10px rgba(180,0,0,0.5);
+}
+@keyframes cdBlink { 0%,100%{opacity:0.7} 50%{opacity:0.15} }
+
+/* ===== VOTE INFO ===== */
+.vote-info {
+    display: inline-flex; gap: 20px;
+    padding: 14px 28px;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.02);
+    backdrop-filter: blur(8px);
+    font-size: 13px; color: var(--muted);
+    flex-wrap: wrap; justify-content: center;
+}
+
+/* ===== SEARCH ===== */
+.controls { position: relative; z-index: 2; max-width: 500px; margin: 0 auto 50px; padding: 0 20px; }
+.search-wrap input {
+    width: 100%;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 100px;
+    padding: 15px 25px;
+    color: var(--text); outline: none;
+    font-family: 'DM Sans', sans-serif;
+    transition: border-color 0.3s;
+}
+.search-wrap input:focus { border-color: rgba(201,168,76,0.6); }
+.search-wrap input::placeholder { color: var(--muted); }
+.search-wrap .icon { position: absolute; right: 35px; top: 50%; transform: translateY(-50%); color: var(--or); }
+
+/* ===== GRID & CARDS ===== */
+.grid-section { position: relative; z-index: 2; max-width: 1300px; margin: 0 auto; padding: 0 20px 100px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 22px; }
+
+.card {
+    background: rgba(10,2,2,0.7);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 18px;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+    transition: transform 0.4s cubic-bezier(0.175,0.885,0.32,1.275), border-color 0.3s, box-shadow 0.3s;
+}
+.card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(139,0,0,0.7);
+    box-shadow: 0 15px 40px rgba(139,0,0,0.2), 0 0 0 1px rgba(201,168,76,0.1);
+}
+
+.card-img { position: relative; aspect-ratio: 4/5; cursor: zoom-in; overflow: hidden; }
+.card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; filter: brightness(0.92); }
+.card:hover .card-img img { transform: scale(1.08); filter: brightness(1); }
+
+/* Overlay gradient bas de l'image */
+.card-img::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 60%;
+    background: linear-gradient(to top, rgba(5,0,0,0.85) 0%, transparent 100%);
+    pointer-events: none;
+}
+
+.card-numero {
+    position: absolute; top: 14px; left: 14px; z-index: 1;
+    background: rgba(0,0,0,0.8);
+    border: 1px solid var(--or);
+    padding: 4px 14px; border-radius: 100px;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600; color: var(--or);
+    font-size: 13px;
+    text-shadow: 0 0 8px rgba(201,168,76,0.4);
+}
+
+/* Badge rang podium */
+.card-rank {
+    position: absolute; top: 14px; right: 14px; z-index: 1;
+    background: rgba(0,0,0,0.8);
+    border: 1px solid rgba(255,255,255,0.1);
+    width: 34px; height: 34px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px; font-weight: 600; color: var(--muted);
+}
+.card-rank.top1 { border-color: #ffd700; color: #ffd700; background: rgba(255,215,0,0.12); box-shadow: 0 0 12px rgba(255,215,0,0.3); }
+.card-rank.top2 { border-color: #c0c0c0; color: #c0c0c0; }
+.card-rank.top3 { border-color: #cd7f32; color: #cd7f32; }
+
+.card-body { padding: 18px; }
+.card-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 23px; margin-bottom: 4px; color: var(--or2);
+    text-shadow: 0 0 10px rgba(201,168,76,0.2);
+}
+.card-desc { font-size: 12px; color: var(--muted); margin-bottom: 18px; }
+.card-footer { display: flex; align-items: center; justify-content: space-between; }
+
+/* BOUTON VOTE */
+.btn-vote {
+    background: rgba(139,0,0,0.2);
+    border: 1px solid var(--rouge2);
+    color: var(--or2);
+    padding: 10px 20px; border-radius: 100px;
+    cursor: pointer; font-weight: 700; font-size: 12px;
+    letter-spacing: 0.08em;
+    display: flex; align-items: center; gap: 8px;
+    backdrop-filter: blur(5px);
+    transition: all 0.25s ease;
+    text-transform: uppercase;
+}
+.btn-vote:hover {
+    background: var(--rouge2);
+    color: white;
+    border-color: var(--rouge2);
+    box-shadow: 0 0 20px rgba(139,0,0,0.5);
+}
+
+/* ===== LIGHTBOX ===== */
+#lightbox {
+    position: fixed; inset: 0; z-index: 2000;
+    background: rgba(0,0,0,0.97);
+    display: none; align-items: center; justify-content: center;
+    backdrop-filter: blur(15px);
+    opacity: 0; transition: opacity 0.3s ease;
+}
+#lightbox.active { display: flex; opacity: 1; }
+#lightbox img { max-width: 90%; max-height: 85vh; border: 1px solid var(--or); border-radius: 10px; box-shadow: 0 0 50px rgba(139,0,0,0.4); }
+.close-lightbox {
+    position: absolute; top: 28px; right: 28px;
+    background: rgba(139,0,0,0.7); border: 1px solid var(--rouge2); width: 44px; height: 44px;
+    border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 20px; transition: transform 0.2s, background 0.2s;
+}
+.close-lightbox:hover { background: var(--rouge2); transform: rotate(90deg) scale(1.1); }
+
+/* ===== MODALS ===== */
+.overlay {
+    position: fixed; inset: 0; z-index: 1000;
+    background: rgba(0,0,0,0.9); backdrop-filter: blur(12px);
+    display: none; align-items: center; justify-content: center; padding: 20px;
+}
+.overlay.active { display: flex; }
+.modal {
+    background: linear-gradient(160deg, #110505, #0a0202);
+    border: 1px solid rgba(201,168,76,0.25);
+    padding: 40px; border-radius: 28px; width: 100%; max-width: 450px;
+    box-shadow: 0 0 60px rgba(139,0,0,0.2);
+    position: relative; overflow: hidden;
+}
+.modal::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--rouge2), var(--or), var(--rouge2), transparent);
+}
+.field {
+    width: 100%; background: rgba(255,255,255,0.04); border: 1px solid rgba(201,168,76,0.2);
+    padding: 14px 16px; border-radius: 12px; color: var(--text); margin-bottom: 14px;
+    font-family: 'DM Sans', sans-serif; outline: none;
+    transition: border-color 0.25s;
+}
+.field:focus { border-color: rgba(201,168,76,0.5); }
+.field::placeholder { color: var(--muted); }
+
+.btn-main {
+    width: 100%;
+    background: linear-gradient(135deg, #8b0000, #cc2200);
+    border: none; padding: 16px; border-radius: 100px;
+    font-weight: 700; color: white; cursor: pointer;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 20px rgba(139,0,0,0.35);
+}
+.btn-main:hover {
+    background: linear-gradient(135deg, #aa0000, #ee2200);
+    box-shadow: 0 6px 30px rgba(139,0,0,0.55);
+    transform: translateY(-1px);
+}
+
+/* ===== SÉCURITÉ TRANSACTION ===== */
+.field-txn-wrap { position: relative; margin-bottom: 6px; }
+.field-txn-wrap .field { margin-bottom: 0; padding-right: 46px; transition: border-color 0.25s, box-shadow 0.25s; }
+.field-txn-wrap .field.valid   { border-color: #34d399 !important; box-shadow: 0 0 0 3px rgba(52,211,153,0.1); }
+.field-txn-wrap .field.invalid { border-color: #f87171 !important; box-shadow: 0 0 0 3px rgba(248,113,113,0.1); }
+.field-txn-icon { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); display: none; width: 20px; height: 20px; }
+.field-txn-icon.show { display: block; }
+.txn-feedback { font-size: 11px; font-weight: 500; line-height: 1.5; padding: 8px 12px; border-radius: 10px; margin-top: 7px; margin-bottom: 14px; display: none; }
+.txn-feedback.show { display: block; }
+.txn-feedback.err  { background: rgba(248,113,113,0.1); border: 1px solid rgba(248,113,113,0.3); color: #fca5a5; }
+.txn-feedback.ok   { background: rgba(52,211,153,0.08); border: 1px solid rgba(52,211,153,0.25); color: #6ee7b7; }
+.txn-feedback.warn { background: rgba(251,191,36,0.08); border: 1px solid rgba(251,191,36,0.3); color: #fcd34d; }
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%,60%{transform:translateX(-5px)} 40%,80%{transform:translateX(5px)} }
+.shake { animation: shake 0.4s ease; }
+
+/* ===== WHATSAPP ===== */
+.wa-float {
+    position: fixed; bottom: 28px; left: 28px;
+    z-index: 4000; display: flex; align-items: center; gap: 0;
+    cursor: pointer; text-decoration: none;
+}
+.wa-bubble {
+    width: 52px; height: 52px; border-radius: 50%;
+    background: linear-gradient(135deg, rgba(37,211,102,0.18) 0%, rgba(18,140,64,0.12) 100%);
+    border: 1px solid rgba(37,211,102,0.45);
+    backdrop-filter: blur(16px);
+    display: flex; align-items: center; justify-content: center;
+    color: #4ade80;
+    box-shadow: 0 4px 24px rgba(37,211,102,0.18), inset 0 1px 0 rgba(255,255,255,0.08);
+    transition: all 0.28s cubic-bezier(.2,.8,.3,1);
+    position: relative; flex-shrink: 0;
+}
+.wa-dot { position: absolute; top: 3px; right: 3px; width: 11px; height: 11px; border-radius: 50%; background: #34d399; border: 2px solid #050505; animation: waPulse 2.2s ease-in-out infinite; }
+@keyframes waPulse { 0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(52,211,153,0.5)} 50%{transform:scale(1.15);box-shadow:0 0 0 6px rgba(52,211,153,0)} }
+.wa-label { max-width: 0; overflow: hidden; white-space: nowrap; background: rgba(10,3,3,0.95); border: 1px solid rgba(37,211,102,0.3); border-left: none; border-radius: 0 50px 50px 0; padding: 0; font-size: 12px; font-weight: 600; color: #4ade80; transition: max-width 0.35s cubic-bezier(.2,.8,.3,1), padding 0.35s; backdrop-filter: blur(12px); margin-left: -10px; line-height: 52px; box-shadow: 0 4px 24px rgba(0,0,0,0.4); }
+.wa-float:hover .wa-label { max-width: 200px; padding: 0 18px; }
+.wa-float:hover .wa-bubble { border-color: rgba(37,211,102,0.7); transform: scale(1.06); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+    .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .hero-title-king  { font-size: 46px; }
+    .hero-title-thug  { font-size: 52px; }
+    .hero-title-awards { font-size: 24px; }
+    .card-body { padding: 12px; }
+    .card-name { font-size: 18px; }
+    .btn-vote { padding: 8px 12px; font-size: 11px; }
+    .cd-block { min-width: 58px; padding: 10px 12px; }
+    .cd-num { font-size: 28px; }
+    .wa-float { bottom: 20px; left: 16px; }
+    .wa-bubble { width: 46px; height: 46px; }
+    #countdown-wrap { gap: 7px; }
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+    </style>
+</head>
+<body>
+
+<!-- Braises flottantes -->
+<div class="embers" id="embers"></div>
+
+<!-- SVG icons -->
+<svg style="display:none;">
+    <symbol id="icon-crown" viewBox="0 0 24 24">
+        <path d="M5 16L3 5L8.5 10L12 4L15.5 10L21 5L19 16H5M19 19C19 19.6 18.6 20 18 20H6C5.4 20 5 19.6 5 19V18H19V19Z"/>
+    </symbol>
+    <symbol id="icon-heart" viewBox="0 0 24 24">
+        <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.41,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.59,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"/>
+    </symbol>
+    <symbol id="icon-search" viewBox="0 0 24 24">
+        <path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"/>
+    </symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24">
+        <path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/>
+    </symbol>
+</svg>
+
+<!-- LIGHTBOX -->
+<div id="lightbox">
+    <button class="close-lightbox" onclick="closeLightbox()">
+        <svg class="icon-svg"><use xlink:href="#icon-close"></use></svg>
+    </button>
+    <img id="lightbox-img" src="" alt="Zoom Candidat">
+</div>
+
+<!-- HERO -->
+<div class="hero">
+
+    <!-- Couronne SVG -->
+    <div class="crown-wrap">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 17L5 7L9.5 11L12 5L14.5 11L19 7L21 17H3Z" fill="#8b0000" stroke="#c9a84c" stroke-width="0.8"/>
+            <path d="M3 19C3 19.6 3.4 20 4 20H20C20.6 20 21 19.6 21 19V18H3V19Z" fill="#c9a84c"/>
+            <circle cx="12" cy="5" r="1.5" fill="#e8c97a"/>
+            <circle cx="5" cy="7" r="1.2" fill="#c9a84c"/>
+            <circle cx="19" cy="7" r="1.2" fill="#c9a84c"/>
+        </svg>
+    </div>
+
+    <p class="hero-label">Concours Officiel 2026</p>
+
+    <div>
+        <span class="hero-title-king">King</span>
+        <span class="hero-title-thug">Thug</span>
+        <span class="hero-title-awards">Awards</span>
+    </div>
+
+    <p class="hero-edition">1st Edition · 2026</p>
+
+    <div class="gold-line"></div>
+
+    <!-- MANCHE -->
+    <div id="manche-badge">
+        <span class="manche-dot"></span>
+        <span>Manche en cours : <strong id="manche-num">MANCHE 1</strong></span>
+    </div>
+
+    <!-- COMPTE À REBOURS -->
+    <div id="countdown-wrap">
+        <div class="cd-block"><div class="cd-num" id="cd-j">--</div><div class="cd-label">Jours</div></div>
+        <span class="cd-sep">:</span>
+        <div class="cd-block"><div class="cd-num" id="cd-h">--</div><div class="cd-label">Heures</div></div>
+        <span class="cd-sep">:</span>
+        <div class="cd-block"><div class="cd-num" id="cd-m">--</div><div class="cd-label">Minutes</div></div>
+        <span class="cd-sep">:</span>
+        <div class="cd-block"><div class="cd-num" id="cd-s">--</div><div class="cd-label">Secondes</div></div>
+    </div>
+
+    <div class="vote-info">
+        <span><b style="color:var(--or2)">OR</b> Premier vote : 100 FCFA</span>
+        <span style="opacity:0.3">|</span>
+        <span><b style="color:var(--rouge3)">ROUGE</b> Suivants : 25 FCFA</span>
+    </div>
+</div>
+
+<!-- RECHERCHE -->
+<div class="controls">
+    <div class="search-wrap" style="position:relative;">
+        <input type="text" id="search" placeholder="Rechercher un candidat..." oninput="filtrer()">
+        <span class="icon"><svg class="icon-svg"><use xlink:href="#icon-search"></use></svg></span>
+    </div>
+</div>
+
+<!-- GRILLE -->
+<div class="grid-section">
+    <p id="grid-count" style="text-align:center; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--or); margin-bottom:30px; opacity:0.7;"></p>
+    <div class="grid" id="grid"></div>
+</div>
+
+<!-- MODAL LOGIN -->
+<div class="overlay" id="modal-login">
+    <div class="modal">
+        <h2 style="font-family:'Cormorant Garamond'; font-size:32px; text-align:center; color:var(--or2); margin-bottom:10px;">Identification</h2>
+        <div id="login-for" style="margin-bottom:20px; text-align:center; font-size:14px; color:var(--muted);"></div>
+        <input type="tel"   class="field" id="login-tel"   placeholder="Numéro de téléphone">
+        <input type="email" class="field" id="login-email" placeholder="Adresse E-mail (Optionnel)">
+        <button class="btn-main" onclick="submitLogin()">Continuer</button>
+        <button onclick="closeModal('modal-login')" style="background:none; border:none; color:var(--muted); width:100%; margin-top:15px; cursor:pointer; font-family:'DM Sans',sans-serif;">Annuler</button>
+    </div>
+</div>
+
+<!-- MODAL VOTE -->
+<div class="overlay" id="modal-vote">
+    <div class="modal">
+        <div id="modal-vote-content"></div>
+    </div>
+</div>
+
+<!-- WHATSAPP -->
+<a class="wa-float" href="https://wa.me/2250504771284?text=Bonjour%2C%20j'ai%20besoin%20d'aide%20pour%20voter%20sur%20King%20Thug%20Awards." target="_blank" rel="noopener">
+    <div class="wa-bubble">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        <span class="wa-dot"></span>
+    </div>
+    <span class="wa-label">Besoin d'aide ?</span>
+</a>
+
+<div id="toasts" style="position:fixed; bottom:20px; right:20px; z-index:5000;"></div>
+
+<script>
+// ==========================================
+// CONFIG
+// ==========================================
+const API       = "https://backend-xxgf.onrender.com";
+const WAVE_LINK = "https://pay.wave.com/m/M_ci_zuXWh0fj9YGV/c/ci/";
+
+const MANCHE_CONFIG = { numero: 1 };
+
+const COUNTDOWN_CONFIG = {
+    dateFinISO:   "2026-04-25T23:59:00",
+    messageApres: "La manche est terminée !"
+};
+
+// ==========================================
+// STATE
+// ==========================================
+let allCandidates = [];
+let currentVoter  = null;
+let targetCand    = null;
+
+const TXN_REGEX    = /^[A-Za-z]_[A-Za-z0-9]{3,6}-?[A-Za-z0-9]{6,}$/;
+const USED_TXN_KEY = 'mister_used_txn_ids';
+
+// ==========================================
+// BRAISES FLOTTANTES
+// ==========================================
+(function spawnEmbers() {
+    const container = document.getElementById('embers');
+    if (!container) return;
+    for (let i = 0; i < 18; i++) {
+        const e = document.createElement('div');
+        e.className = 'ember';
+        const left = Math.random() * 100;
+        const dur  = 3 + Math.random() * 5;
+        const delay = Math.random() * 6;
+        const dx   = (Math.random() - 0.5) * 60;
+        e.style.cssText = `left:${left}%; animation-duration:${dur}s; animation-delay:${delay}s; --dx:${dx}px; width:${1+Math.random()*3}px; height:${1+Math.random()*3}px;`;
+        container.appendChild(e);
+    }
+})();
+
+// ==========================================
+// MANCHE
+// ==========================================
+document.getElementById('manche-num').textContent = `MANCHE ${MANCHE_CONFIG.numero}`;
+
+// ==========================================
+// COMPTE À REBOURS
+// ==========================================
+(function initCountdown() {
+    const finDate = new Date(COUNTDOWN_CONFIG.dateFinISO);
+    function pad(n) { return String(n).padStart(2,'0'); }
+    function tick() {
+        const diff = finDate - new Date();
+        if (diff <= 0) {
+            ['cd-j','cd-h','cd-m','cd-s'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.textContent = '00';
+            });
+            clearInterval(iv);
+            const cw = document.getElementById('countdown-wrap');
+            if (cw) cw.insertAdjacentHTML('afterend', `<p style="text-align:center;color:var(--or);font-size:13px;letter-spacing:0.1em;margin-bottom:16px;">${COUNTDOWN_CONFIG.messageApres}</p>`);
+            return;
+        }
+        document.getElementById('cd-j').textContent = pad(Math.floor(diff/86400000));
+        document.getElementById('cd-h').textContent = pad(Math.floor((diff%86400000)/3600000));
+        document.getElementById('cd-m').textContent = pad(Math.floor((diff%3600000)/60000));
+        document.getElementById('cd-s').textContent = pad(Math.floor((diff%60000)/1000));
+    }
+    tick();
+    const iv = setInterval(tick, 1000);
+})();
+
+// ==========================================
+// SÉCURITÉ TXN
+// ==========================================
+function getUsedTxnIds() { try { return JSON.parse(localStorage.getItem(USED_TXN_KEY)||'[]'); } catch { return []; } }
+function saveUsedTxnId(id) {
+    const ids = getUsedTxnIds();
+    if (!ids.includes(id)) { ids.push(id); if (ids.length > 200) ids.splice(0, ids.length-200); localStorage.setItem(USED_TXN_KEY, JSON.stringify(ids)); }
+}
+function countPositionalMatches(a, b) { const len=Math.min(a.length,b.length); let m=0; for(let i=0;i<len;i++) if(a[i]===b[i]) m++; return m; }
+const SIMILARITY_THRESHOLD = 10;
+
+function validerTxnId(txnId) {
+    const raw = txnId.replace(/\s/g,'').trim();
+    if (!raw) return { valid:false, code:'empty', message:'Veuillez coller votre référence de paiement Wave.' };
+    if (!TXN_REGEX.test(raw)) return { valid:false, code:'format', message:'Format invalide. Ex : T_R5553BC34EDGXUZF' };
+    const usedIds = getUsedTxnIds();
+    if (usedIds.includes(raw)) return { valid:false, code:'duplicate', message:'Cette référence a déjà été soumise.' };
+    for (const used of usedIds) {
+        if (countPositionalMatches(raw.toUpperCase(), used.toUpperCase()) >= SIMILARITY_THRESHOLD)
+            return { valid:false, code:'similar', message:'Cette référence ressemble à une transaction déjà utilisée.' };
+    }
+    return { valid:true, code:'ok', message:'Référence valide.' };
+}
+
+function attachTxnValidation(inputId, feedbackId) {
+    const input = document.getElementById(inputId);
+    const feedback = document.getElementById(feedbackId);
+    if (!input || !feedback) return;
+    const iconOk  = `<svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+    const iconErr = `<svg viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
+    let iconEl = input.parentNode.querySelector('.field-txn-icon');
+    if (!iconEl) { iconEl = document.createElement('span'); iconEl.className='field-txn-icon'; input.parentNode.appendChild(iconEl); }
+    input.addEventListener('input', () => {
+        const val = input.value.trim();
+        if (!val) { input.classList.remove('valid','invalid'); feedback.className='txn-feedback'; iconEl.className='field-txn-icon'; return; }
+        const result = validerTxnId(val);
+        if (result.valid) {
+            input.classList.add('valid'); input.classList.remove('invalid');
+            feedback.className='txn-feedback ok show'; feedback.textContent='✓ Référence valide';
+            iconEl.innerHTML=iconOk; iconEl.className='field-txn-icon show';
+        } else {
+            input.classList.add('invalid'); input.classList.remove('valid');
+            feedback.className=`txn-feedback ${result.code==='format'?'warn':'err'} show`; feedback.textContent=result.message;
+            iconEl.innerHTML=iconErr; iconEl.className='field-txn-icon show';
+        }
+    });
+}
+
+// ==========================================
+// INIT
+// ==========================================
+window.onload = async () => {
+    await chargerCandidates();
+    const stored = localStorage.getItem('mister_voter');
+    if (stored) {
+        try {
+            const v = JSON.parse(stored);
+            const r = await fetch(`${API}/mister/voter/${v.id}`);
+            if (r.ok) { const data = await r.json(); currentVoter = data.voter; localStorage.setItem('mister_voter', JSON.stringify(currentVoter)); }
+        } catch(e) {}
+    }
+};
+
+// ==========================================
+// CANDIDATS
+// ==========================================
+async function chargerCandidates() {
+    try {
+        const r = await fetch(`${API}/mister/candidates`);
+        const data = await r.json();
+        allCandidates = data.candidates || [];
+        renderGrid(allCandidates);
+    } catch(e) {
+        document.getElementById('grid').innerHTML = `<p style="text-align:center;grid-column:1/-1;opacity:0.6;color:var(--muted);">Erreur de connexion au serveur.</p>`;
+    }
+}
+
+// ==========================================
+// RENDER GRID
+// ==========================================
+function renderGrid(list) {
+    const sorted = [...list].sort((a,b) => b.votes - a.votes);
+    document.getElementById('grid-count').textContent = `${sorted.length} CANDIDATS`;
+
+    document.getElementById('grid').innerHTML = sorted.map((c, i) => {
+        let rankClass = '', rankLabel = i+1;
+        if (i===0) rankClass='top1';
+        else if (i===1) rankClass='top2';
+        else if (i===2) rankClass='top3';
+
+        return `
+        <div class="card" style="animation:fadeUp 0.6s ease forwards ${i*0.1}s; opacity:0;">
+            <div class="card-img" onclick="openLightbox('${c.photo_url||''}')">
+                ${c.photo_url
+                    ? `<img src="${c.photo_url}" alt="${c.nom}">`
+                    : `<div style="height:100%;display:flex;align-items:center;justify-content:center;background:#100505;">
+                         <svg style="width:50px;fill:#3a0000;"><use xlink:href="#icon-crown"></use></svg>
+                       </div>`
+                }
+                <span class="card-numero">N° ${String(c.numero).padStart(2,'0')}</span>
+                <span class="card-rank ${rankClass}">${rankLabel}</span>
+            </div>
+            <div class="card-body">
+                <div class="card-name">${c.nom}</div>
+                <div class="card-desc">${c.description||'Candidat Officiel'}</div>
+                <div class="card-footer">
+                    <div style="font-size:14px;color:var(--rouge3);font-weight:bold;display:flex;align-items:center;gap:5px;">
+                        <svg class="icon-svg"><use xlink:href="#icon-heart"></use></svg>
+                        ${parseInt(c.votes||0).toLocaleString()}
+                    </div>
+                    <button class="btn-vote" onclick="ouvrirVote(${c.id})">VOTER</button>
+                </div>
+            </div>
+        </div>`;
+    }).join('');
+}
+
+// ==========================================
+// LIGHTBOX
+// ==========================================
+function openLightbox(url) {
+    if (!url) return;
+    document.getElementById('lightbox-img').src = url;
+    document.getElementById('lightbox').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key==='Escape') closeLightbox(); });
+
+// ==========================================
+// VOTE
+// ==========================================
+function ouvrirVote(candidateId) {
+    targetCand = allCandidates.find(c => c.id === candidateId);
+    if (!targetCand) return;
+    if (!currentVoter) {
+        document.getElementById('login-for').innerHTML = `Vote pour <b style="color:var(--or2)">${targetCand.nom}</b>`;
+        openModal('modal-login');
+    } else {
+        ouvrirModalVote();
+    }
+}
+
+async function submitLogin() {
+    const tel   = document.getElementById('login-tel').value;
+    const email = document.getElementById('login-email').value;
+    if (!tel && !email) return toast("Veuillez remplir un champ", false);
+    try {
+        const r = await fetch(`${API}/mister/voter/login`, {
+            method:'POST', headers:{'Content-Type':'application/json'},
+            body: JSON.stringify({ telephone: tel||null, email: email||null })
+        });
+        const data = await r.json();
+        if (data.success) {
+            currentVoter = data.voter;
+            localStorage.setItem('mister_voter', JSON.stringify(currentVoter));
+            closeModal('modal-login');
+            ouvrirModalVote();
+        }
+    } catch(e) { toast("Erreur de connexion", false); }
+}
+
+function ouvrirModalVote() {
+    const isFirst = !currentVoter.a_paye_premier_vote;
+    const c = targetCand;
+    let html = `<h2 style="font-family:'Cormorant Garamond';font-size:28px;text-align:center;color:var(--or2);margin-bottom:20px;">Soutenir ${c.nom}</h2>`;
+
+    if (isFirst) {
+        html += `
+            <div style="background:rgba(139,0,0,0.12);padding:20px;border-radius:15px;text-align:center;border:1px solid var(--rouge2);margin-bottom:20px;">
+                <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);">Premier Vote</div>
+                <div style="font-size:32px;font-weight:bold;color:var(--or2);">100 FCFA</div>
+            </div>
+            <a href="${WAVE_LINK}?amount=100" target="_blank" class="btn-main" style="display:block;text-decoration:none;text-align:center;margin-bottom:15px;background:#0098df;">Payer via WAVE</a>
+            <label style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--or);display:block;margin-bottom:6px;">Référence de transaction</label>
+            <div class="field-txn-wrap">
+              <input type="text" class="field" id="txn-id-premier" placeholder="Ex : T_R5553BC34EDGXUZF" autocomplete="off" spellcheck="false">
+            </div>
+            <div class="txn-feedback" id="txn-feedback-premier"></div>
+            <button class="btn-main" onclick="soumettreDemande(1,100)">Valider mon vote</button>`;
+    } else {
+        html += `
+            <div style="background:rgba(255,255,255,0.03);padding:20px;border-radius:15px;margin-bottom:20px;border:1px solid var(--border);">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;">
+                    <span>Nombre de votes</span>
+                    <input type="number" id="qty-votes" value="1" min="1" oninput="updateCalc()" style="width:60px;background:#110303;border:1px solid var(--rouge2);color:white;padding:5px;border-radius:5px;">
+                </div>
+                <div style="display:flex;justify-content:space-between;font-weight:bold;">
+                    <span>Total</span>
+                    <span id="calc-total" style="color:var(--or2);">25 FCFA</span>
+                </div>
+            </div>
+            <a href="${WAVE_LINK}" id="wave-btn-multi" target="_blank" class="btn-main" style="display:block;text-decoration:none;text-align:center;margin-bottom:15px;background:#0098df;">Payer via WAVE</a>
+            <label style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--or);display:block;margin-bottom:6px;">Référence de transaction</label>
+            <div class="field-txn-wrap">
+              <input type="text" class="field" id="txn-id-multi" placeholder="Ex : T_R5553BC34EDGXUZF" autocomplete="off" spellcheck="false">
+            </div>
+            <div class="txn-feedback" id="txn-feedback-multi"></div>
+            <button class="btn-main" onclick="soumettreDemandeMulti()">Confirmer les votes</button>`;
+    }
+    html += `<button onclick="closeModal('modal-vote')" style="background:none;border:none;color:var(--muted);width:100%;margin-top:15px;cursor:pointer;font-family:'DM Sans',sans-serif;">Retour</button>`;
+
+    document.getElementById('modal-vote-content').innerHTML = html;
+    openModal('modal-vote');
+
+    if (isFirst) attachTxnValidation('txn-id-premier','txn-feedback-premier');
+    else { attachTxnValidation('txn-id-multi','txn-feedback-multi'); updateCalc(); }
+}
+
+function updateCalc() {
+    const qty = Math.max(1, parseInt(document.getElementById('qty-votes').value)||1);
+    document.getElementById('calc-total').textContent = (qty*25)+' FCFA';
+    document.getElementById('wave-btn-multi').href = `${WAVE_LINK}?amount=${qty*25}`;
+}
+
+async function soumettreDemande(nb, mont) {
+    const inputEl    = document.getElementById('txn-id-premier') || document.getElementById('txn-id-multi');
+    const feedbackEl = document.getElementById('txn-feedback-premier') || document.getElementById('txn-feedback-multi');
+    const tid = (inputEl ? inputEl.value : '').replace(/\s/g,'').trim();
+    const check = validerTxnId(tid);
+    if (!check.valid) {
+        if (inputEl) { inputEl.classList.add('invalid','shake'); setTimeout(()=>inputEl.classList.remove('shake'),450); }
+        if (feedbackEl) { feedbackEl.className=`txn-feedback ${check.code==='format'?'warn':'err'} show`; feedbackEl.textContent=check.message; }
+        toast(check.code==='duplicate'?'⛔ Référence déjà utilisée':'❌ Référence invalide', false);
+        return;
+    }
+    try {
+        const r = await fetch(`${API}/mister/voter/demande-vote`, {
+            method:'POST', headers:{'Content-Type':'application/json'},
+            body: JSON.stringify({ voter_id:currentVoter.id, candidate_numero:targetCand.numero, nombre_votes:nb, montant:mont, transaction_id:tid })
+        });
+        const data = await r.json();
+        if (data.success) {
+            saveUsedTxnId(tid);
+            document.getElementById('modal-vote-content').innerHTML = `
+                <div style="text-align:center;padding:20px;">
+                    <svg style="width:60px;height:60px;fill:var(--or);margin-bottom:16px;filter:drop-shadow(0 0 10px rgba(201,168,76,0.5));"><use xlink:href="#icon-crown"></use></svg>
+                    <h3 style="color:var(--or2);font-family:'Cormorant Garamond';font-size:26px;">Demande Reçue !</h3>
+                    <p style="font-size:14px;color:var(--muted);margin:15px 0;">Votre vote est en cours de validation par nos services.</p>
+                    <button class="btn-main" onclick="closeModal('modal-vote')">Fermer</button>
+                </div>`;
+            currentVoter.a_paye_premier_vote = true;
+            localStorage.setItem('mister_voter', JSON.stringify(currentVoter));
+        } else { toast(data.message||"Erreur lors de l'envoi.", false); }
+    } catch(e) { toast("Erreur réseau", false); }
+}
+
+function soumettreDemandeMulti() {
+    const qty = Math.max(1, parseInt(document.getElementById('qty-votes').value)||1);
+    soumettreDemande(qty, qty*25);
+}
+
+// ==========================================
+// FILTRE / MODALS / TOAST
+// ==========================================
+function filtrer() {
+    const q = document.getElementById('search').value.toLowerCase();
+    renderGrid(allCandidates.filter(c => c.nom.toLowerCase().includes(q) || String(c.numero).includes(q)));
+}
+function openModal(id)  { document.getElementById(id).classList.add('active'); }
+function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+function toast(msg, ok=true) {
+    const t = document.createElement('div');
+    t.style.cssText = `background:${ok?'#0f1a0a':'#1a0505'};color:white;padding:15px 25px;border-radius:10px;margin-top:10px;border:1px solid ${ok?'rgba(52,211,153,0.3)':'rgba(139,0,0,0.6)'};font-size:13px;`;
+    t.textContent = msg;
+    document.getElementById('toasts').appendChild(t);
+    setTimeout(() => t.remove(), 5000);
+}
+</script>
+</body>
+</html>
