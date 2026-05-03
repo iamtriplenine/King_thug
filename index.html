@@ -299,18 +299,7 @@ body::after {
 }
 
 /* Badge rang podium */
-.card-rank {
-    position: absolute; top: 14px; right: 14px; z-index: 1;
-    background: rgba(0,0,0,0.8);
-    border: 1px solid rgba(255,255,255,0.1);
-    width: 34px; height: 34px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 14px; font-weight: 600; color: var(--muted);
-}
-.card-rank.top1 { border-color: #ffd700; color: #ffd700; background: rgba(255,215,0,0.12); box-shadow: 0 0 12px rgba(255,215,0,0.3); }
-.card-rank.top2 { border-color: #c0c0c0; color: #c0c0c0; }
-.card-rank.top3 { border-color: #cd7f32; color: #cd7f32; }
+.card-rank { display: none; }
 
 .card-body { padding: 18px; }
 .card-name {
@@ -464,15 +453,7 @@ body::after {
 
 
 
-/* Désactiver l'affichage des boutons de vote 
-.btn-vote {
-    display: none !important;
-} 
 
- /* Optionnel : masquer aussi les infos de prix en haut 
-.vote-info {
-    display: none !important;
-} */
     </style>
 </head>
 <body>
@@ -794,7 +775,11 @@ async function chargerCandidates() {
 // RENDER GRID
 // ==========================================
 function renderGrid(list) {
-    const sorted = [...list].sort((a,b) => b.votes - a.votes);
+    const sorted = [...list].sort((a,b) => {
+        const diff = b.votes - a.votes;
+        if (diff !== 0) return diff;
+        return a.numero - b.numero; // égalité → numéro croissant
+    });
     document.getElementById('grid-count').textContent = `${sorted.length} CANDIDATS`;
 
     document.getElementById('grid').innerHTML = sorted.map((c, i) => {
