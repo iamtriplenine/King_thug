@@ -453,12 +453,12 @@ body::after {
 
 
 
-/*   */
+/*   
 
         .btn-vote {
     display: none;
 }
-
+*/
 
     </style>
 </head>
@@ -597,7 +597,7 @@ const WAVE_LINK = "https://pay.wave.com/m/M_ci_zuXWh0fj9YGV/c/ci/";
 const MANCHE_CONFIG = { numero: 1 };
 
 const COUNTDOWN_CONFIG = {
-    dateFinISO:   "2026-04-25T23:00:00",
+    dateFinISO:   "2026-05-09T03:00:00",
     messageApres: "La manche est terminée !"
 };
 
@@ -637,7 +637,7 @@ document.getElementById('manche-num').textContent = `MANCHE ${MANCHE_CONFIG.nume
 // ==========================================
 // COMPTE À REBOURS
 // ==========================================
-  /*(function initCountdown() {
+  (function initCountdown() {
     const finDate = new Date(COUNTDOWN_CONFIG.dateFinISO);
     function pad(n) { return String(n).padStart(2,'0'); }
     function tick() {
@@ -660,10 +660,10 @@ document.getElementById('manche-num').textContent = `MANCHE ${MANCHE_CONFIG.nume
     tick();
     const iv = setInterval(tick, 1000);
 })();
-*/
 
 
-(function initCountdown() {
+
+/*(function initCountdown() {
 
     const FORCE_ZERO = true; // 🔥 mets false pour revenir normal
 
@@ -699,7 +699,7 @@ document.getElementById('manche-num').textContent = `MANCHE ${MANCHE_CONFIG.nume
     tick();
     setInterval(tick, 1000);
 
-})();
+})();*/
 // ==========================================
 // SÉCURITÉ TXN
 // ==========================================
